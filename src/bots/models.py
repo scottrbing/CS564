@@ -5,6 +5,8 @@ from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent
 from langchain.agents.middleware import dynamic_prompt, ModelRequest
 
+from src.db.vector_store import chroma_db
+
 
 class RagModel:
     _instance = None
@@ -62,3 +64,39 @@ class RagModel:
     
     def ask_graph_rag(self, user_query: str):
         return  self.ask(self.graph_agent, user_query)
+
+
+ANSWER_GENERATION_PROMPT = """You are a QA system answering questions using ONLY the context provided below.
+
+The context contains:
+1. SUPPORTING DOCUMENT EXCERPTS: raw text from source articles.
+
+Instructions:
+- First, check the DOCUMENT EXCERPTS for specific details that answer the question.
+- For Yes/No questions: look for SPECIFIC evidence in the excerpts that either 
+  supports or contradicts the claim. Do NOT guess.
+  If the excerpts discuss the topic, you CAN determine Yes or No from their content.
+- Only respond "Unknown" if the context truly contains NO relevant information 
+  about the question topic. If you see relevant excerpts, give an answer.
+- Be concise: answer with a single entity name, date, short phrase, or Yes or No.
+- Do NOT explain your reasoning.
+
+Context:
+{context}
+
+Question: {question}"""
+
+llm = ChatOpenAI(model=settings.CHAT_MODEL, temperature=0, api_key=settings.OPENAI_API_KEY)
+def ask_vector_rag_direct(query: str, chroma_db = chroma_db, llm = llm) -> str:
+    docs = chroma_db.similarity_search(query, k=3)
+    
+    context_parts = []
+    for i, doc in enumerate(docs):
+        title = doc.metadata.get('title', f'Source {i+1}')
+        context_parts.append(f"[Source: {title}]\n{doc.page_content}")
+    
+    context = "\n\n---\n\n".join(context_parts)
+    
+    response = llm.invoke([HumanMessage(content=ANSWER_GENERATION_PROMPT.format(context=context, question=query))])
+    
+    return response.content.strip()

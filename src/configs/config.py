@@ -21,6 +21,12 @@ class AppSettings(BaseSettings):
     DOCUMENT_COLLECTION_PATH: str
     QUERIES_COLLECTION_PATH: str
 
+    # Neo4j settings
+    NEO4J_URI: str
+    NEO4J_USERNAME: str
+    NEO4J_PASSWORD: str
+    NEO4J_DATABASE: str = "neo4j"
+
 
     # This tells Pydantic to look for a .env file in the root directory
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")

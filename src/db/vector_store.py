@@ -8,11 +8,11 @@ class VectorStoreManager:
     @classmethod
     def get_chroma_store(cls):
         if cls._instance is None:
-            print("Initializing vector store")
+            print("Initializing vector store...")
             cls._instance = Chroma(
-                collection_name=settings.CHROMA_COLLECTION_NAME,
+                collection_name = settings.CHROMA_COLLECTION_NAME,
                 embedding_function = embeddings,
-                persist_directory=settings.CHROMA_PERSIST_DIRECTORY,
+                persist_directory = settings.CHROMA_PERSIST_DIRECTORY,
             )
         return cls._instance
     

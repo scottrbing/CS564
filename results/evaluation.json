@@ -1,0 +1,343 @@
+{
+  "Vector RAG": {
+    "overall": {
+      "accuracy": 0.795,
+      "correct": 159,
+      "total": 200,
+      "hallucination_rate": 0.06,
+      "hallucinations": 3,
+      "null_total": 50,
+      "miss_rate": 0.18666666666666668,
+      "misses": 28,
+      "non_null_total": 150,
+      "wrong_yesno": 10,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "wrong_yesno": 10,
+        "miss": 28,
+        "correct": 159,
+        "hallucination": 3
+      }
+    },
+    "latency": {
+      "mean": 0.86,
+      "median": 0.65,
+      "p95": 1.75,
+      "min": 0.47,
+      "max": 11.14,
+      "std": 0.84
+    },
+    "inference_query": {
+      "accuracy": 0.94,
+      "correct": 47,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.06,
+      "misses": 3,
+      "non_null_total": 50,
+      "wrong_yesno": 0,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 47,
+        "miss": 3
+      }
+    },
+    "comparison_query": {
+      "accuracy": 0.7,
+      "correct": 35,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.16,
+      "misses": 8,
+      "non_null_total": 50,
+      "wrong_yesno": 7,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "wrong_yesno": 7,
+        "miss": 8,
+        "correct": 35
+      }
+    },
+    "temporal_query": {
+      "accuracy": 0.6,
+      "correct": 30,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.34,
+      "misses": 17,
+      "non_null_total": 50,
+      "wrong_yesno": 3,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "miss": 17,
+        "correct": 30,
+        "wrong_yesno": 3
+      }
+    },
+    "null_query": {
+      "accuracy": 0.94,
+      "correct": 47,
+      "total": 50,
+      "hallucination_rate": 0.06,
+      "hallucinations": 3,
+      "null_total": 50,
+      "miss_rate": 0,
+      "misses": 0,
+      "non_null_total": 0,
+      "wrong_yesno": 0,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 47,
+        "hallucination": 3
+      }
+    }
+  },
+  "Graph RAG": {
+    "overall": {
+      "accuracy": 0.825,
+      "correct": 165,
+      "total": 200,
+      "hallucination_rate": 0.14,
+      "hallucinations": 7,
+      "null_total": 50,
+      "miss_rate": 0.04666666666666667,
+      "misses": 7,
+      "non_null_total": 150,
+      "wrong_yesno": 19,
+      "wrong_answer": 2,
+      "error_breakdown": {
+        "correct": 165,
+        "wrong_yesno": 19,
+        "miss": 7,
+        "hallucination": 7,
+        "wrong_answer": 2
+      }
+    },
+    "latency": {
+      "mean": 2.02,
+      "median": 1.93,
+      "p95": 2.9,
+      "min": 0.97,
+      "max": 5.92,
+      "std": 0.57
+    },
+    "inference_query": {
+      "accuracy": 0.9,
+      "correct": 45,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.06,
+      "misses": 3,
+      "non_null_total": 50,
+      "wrong_yesno": 0,
+      "wrong_answer": 2,
+      "error_breakdown": {
+        "correct": 45,
+        "miss": 3,
+        "wrong_answer": 2
+      }
+    },
+    "comparison_query": {
+      "accuracy": 0.84,
+      "correct": 42,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.02,
+      "misses": 1,
+      "non_null_total": 50,
+      "wrong_yesno": 7,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 42,
+        "wrong_yesno": 7,
+        "miss": 1
+      }
+    },
+    "temporal_query": {
+      "accuracy": 0.7,
+      "correct": 35,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.06,
+      "misses": 3,
+      "non_null_total": 50,
+      "wrong_yesno": 12,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "wrong_yesno": 12,
+        "correct": 35,
+        "miss": 3
+      }
+    },
+    "null_query": {
+      "accuracy": 0.86,
+      "correct": 43,
+      "total": 50,
+      "hallucination_rate": 0.14,
+      "hallucinations": 7,
+      "null_total": 50,
+      "miss_rate": 0,
+      "misses": 0,
+      "non_null_total": 0,
+      "wrong_yesno": 0,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 43,
+        "hallucination": 7
+      }
+    }
+  },
+  "Hybrid RAG": {
+    "overall": {
+      "accuracy": 0.795,
+      "correct": 159,
+      "total": 200,
+      "hallucination_rate": 0.1,
+      "hallucinations": 5,
+      "null_total": 50,
+      "miss_rate": 0.08,
+      "misses": 12,
+      "non_null_total": 150,
+      "wrong_yesno": 23,
+      "wrong_answer": 1,
+      "error_breakdown": {
+        "correct": 159,
+        "wrong_yesno": 23,
+        "miss": 12,
+        "hallucination": 5,
+        "wrong_answer": 1
+      }
+    },
+    "latency": {
+      "mean": 3.05,
+      "median": 3.03,
+      "p95": 4.21,
+      "min": 0.94,
+      "max": 5.96,
+      "std": 0.76
+    },
+    "inference_query": {
+      "accuracy": 0.96,
+      "correct": 48,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.02,
+      "misses": 1,
+      "non_null_total": 50,
+      "wrong_yesno": 0,
+      "wrong_answer": 1,
+      "error_breakdown": {
+        "correct": 48,
+        "wrong_answer": 1,
+        "miss": 1
+      }
+    },
+    "comparison_query": {
+      "accuracy": 0.74,
+      "correct": 37,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.04,
+      "misses": 2,
+      "non_null_total": 50,
+      "wrong_yesno": 11,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 37,
+        "wrong_yesno": 11,
+        "miss": 2
+      }
+    },
+    "temporal_query": {
+      "accuracy": 0.58,
+      "correct": 29,
+      "total": 50,
+      "hallucination_rate": 0,
+      "hallucinations": 0,
+      "null_total": 0,
+      "miss_rate": 0.18,
+      "misses": 9,
+      "non_null_total": 50,
+      "wrong_yesno": 12,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "wrong_yesno": 12,
+        "correct": 29,
+        "miss": 9
+      }
+    },
+    "null_query": {
+      "accuracy": 0.9,
+      "correct": 45,
+      "total": 50,
+      "hallucination_rate": 0.1,
+      "hallucinations": 5,
+      "null_total": 50,
+      "miss_rate": 0,
+      "misses": 0,
+      "non_null_total": 0,
+      "wrong_yesno": 0,
+      "wrong_answer": 0,
+      "error_breakdown": {
+        "correct": 45,
+        "hallucination": 5
+      }
+    }
+  },
+  "latency_by_type": {
+    "inference_query": {
+      "vector": 0.88,
+      "graph": 1.86,
+      "hybrid": 2.75
+    },
+    "comparison_query": {
+      "vector": 0.84,
+      "graph": 2.33,
+      "hybrid": 3.32
+    },
+    "temporal_query": {
+      "vector": 0.97,
+      "graph": 2.03,
+      "hybrid": 3.15
+    },
+    "null_query": {
+      "vector": 0.76,
+      "graph": 1.85,
+      "hybrid": 2.97
+    }
+  },
+  "Graph RAG vs Vector RAG": {
+    "a_wins": 24,
+    "b_wins": 18,
+    "both_correct": 141,
+    "both_wrong": 17
+  },
+  "Hybrid RAG vs Vector RAG": {
+    "a_wins": 16,
+    "b_wins": 16,
+    "both_correct": 143,
+    "both_wrong": 25
+  },
+  "Hybrid RAG vs Graph RAG": {
+    "a_wins": 12,
+    "b_wins": 18,
+    "both_correct": 147,
+    "both_wrong": 23
+  }
+}

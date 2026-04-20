@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "description": "Schema v2 — designed from analysis of 200 MultiHopRAG test queries and 173 unique evidence articles. 84% of queries reference specific publications, 54% reference 2+ publications, 23% reference specific dates.",
+    "design_rationale": "No catch-all edges (ASSOCIATED_WITH/HAS_RELATIONSHIP are banned). Every edge must carry specific semantic meaning. Publication node is first-class because 84% of queries name a source."
+  },
+
+  "nodes": [
+    {
+      "label": "Person",
+      "description": "Named individuals only. Athletes (Travis Kelce, Lionel Messi, Tyreek Hill, Scott McTominay), executives (Sam Bankman-Fried, Sam Altman, Tim Sweeney, Sundar Pichai), politicians, journalists, actors. Must be a proper noun referring to a specific human."
+    },
+    {
+      "label": "Organization",
+      "description": "Companies, sports teams, agencies, non-profits. Examples: FTX, Alameda Research, OpenAI, Google, Apple, Epic Games, Kansas City Chiefs, Manchester United, Paradigm, Jane Street, NCAA."
+    },
+    {
+      "label": "Publication",
+      "description": "News outlets and media sources that publish articles. This is CRITICAL — extract this for every article. Examples: TechCrunch, The Verge, Fortune, Sporting News, The Independent, The Age, Polygon, CNBC, The Guardian, CBSSports.com, Engadget, TalkSport, BBC News, FOX News, The Sydney Morning Herald, Music Business Worldwide, Essentially Sports, The Roar, Yardbarker, The New York Times, Sportskeeda."
+    },
+    {
+      "label": "Product",
+      "description": "Tangible goods, hardware, software products. Examples: ChatGPT, GPT-4, Pixel 8, iPhone, Gemini, FTT token."
+    },
+    {
+      "label": "CreativeWork",
+      "description": "Movies, TV shows, albums, video games, books, songs. Examples: Fortnite, Diablo 4, Spider-Man 2, The Crown, Pulse."
+    },
+    {
+      "label": "Location",
+      "description": "Physical places: countries, cities, venues, stadiums. Examples: Arrowhead Stadium, Silicon Valley, Manhattan Federal Court, Old Trafford, BMO Field."
+    },
+    {
+      "label": "Event",
+      "description": "Named occurrences with specific context: trials, matches, tournaments, conferences, elections. Examples: SBF Trial, Epic v. Google Trial, 2023 Winter Meetings, Week 14, OpenAI DevDay, Champions League 2023."
+    },
+    {
+      "label": "LegalCharge",
+      "description": "Specific criminal or civil charges. Examples: wire fraud, conspiracy, money laundering, antitrust violation."
+    },
+    {
+      "label": "Award",
+      "description": "Honors and recognitions. Examples: Time Person of the Year, Rookie of the Year, NBA MVP."
+    }
+  ],
+
+  "edges": [
+    {
+      "label": "REPORTED_BY",
+      "description": "Connects ANY entity to the Publication that wrote about it. This is the MOST IMPORTANT edge. If a chunk mentions which publication wrote the article, create this edge. Example: (SBF Trial) -[REPORTED_BY]-> (TechCrunch). (Taylor Swift) -[REPORTED_BY]-> (The Independent). Use liberally."
+    },
+    {
+      "label": "CEO_OF",
+      "description": "Person is/was CEO of Organization. (Sam Bankman-Fried) -[CEO_OF]-> (FTX). (Caroline Ellison) -[CEO_OF]-> (Alameda Research). (Sam Altman) -[CEO_OF]-> (OpenAI)."
+    },
+    {
+      "label": "WORKS_FOR",
+      "description": "Person employed by or plays for Organization (non-CEO roles). (Travis Kelce) -[WORKS_FOR]-> (Kansas City Chiefs). (Prabhakar Raghavan) -[WORKS_FOR]-> (Google)."
+    },
+    {
+      "label": "FOUNDED",
+      "description": "Person or Organization created/established another entity. (Sam Bankman-Fried) -[FOUNDED]-> (FTX). (Sam Bankman-Fried) -[FOUNDED]-> (Alameda Research)."
+    },
+    {
+      "label": "OWNS",
+      "description": "Ownership or acquisition. (Google) -[OWNS]-> (Android). (Meta) -[OWNS]-> (Instagram)."
+    },
+    {
+      "label": "INVESTED_IN",
+      "description": "Financial investment. (Paradigm) -[INVESTED_IN]-> (FTX). DO NOT confuse with ownership."
+    },
+    {
+      "label": "SUED",
+      "description": "One entity filed legal action against another. (Epic Games) -[SUED]-> (Google). (Helena World Chronicle) -[SUED]-> (Google)."
+    },
+    {
+      "label": "CHARGED_WITH",
+      "description": "Person facing criminal/civil charges. (Sam Bankman-Fried) -[CHARGED_WITH]-> (Wire Fraud)."
+    },
+    {
+      "label": "TESTIFIED_IN",
+      "description": "Person gave testimony in a legal Event. (Caroline Ellison) -[TESTIFIED_IN]-> (SBF Trial). (Prabhakar Raghavan) -[TESTIFIED_IN]-> (Google Antitrust Case)."
+    },
+    {
+      "label": "ROMANTIC_LINK",
+      "description": "Confirmed or rumored romantic relationship between two Persons. (Taylor Swift) -[ROMANTIC_LINK]-> (Travis Kelce). (Sam Bankman-Fried) -[ROMANTIC_LINK]-> (Caroline Ellison)."
+    },
+    {
+      "label": "FAMILY_OF",
+      "description": "Family relationship. (Donna Kelce) -[FAMILY_OF]-> (Travis Kelce)."
+    },
+    {
+      "label": "ATTENDED",
+      "description": "Person was physically present at Location or Event. (Taylor Swift) -[ATTENDED]-> (Arrowhead Stadium)."
+    },
+    {
+      "label": "LOCATED_IN",
+      "description": "Entity is geographically situated in a Location. (Arrowhead Stadium) -[LOCATED_IN]-> (Kansas City). (FTX) -[LOCATED_IN]-> (Bahamas)."
+    },
+    {
+      "label": "COMPETED_IN",
+      "description": "Team or Person participated in a match/tournament Event. (Kansas City Chiefs) -[COMPETED_IN]-> (Chiefs vs Bears). (Michigan) -[COMPETED_IN]-> (The Game 2023)."
+    },
+    {
+      "label": "SCORED_IN",
+      "description": "Person scored points/goals in an Event. (Scott McTominay) -[SCORED_IN]-> (Man United vs Chelsea)."
+    },
+    {
+      "label": "PRODUCED",
+      "description": "Organization or Person created a Product or CreativeWork. (OpenAI) -[PRODUCED]-> (ChatGPT). (Epic Games) -[PRODUCED]-> (Fortnite)."
+    },
+    {
+      "label": "RECEIVED",
+      "description": "Person or work received an Award. (Taylor Swift) -[RECEIVED]-> (Time Person of the Year)."
+    },
+    {
+      "label": "COMPETES_WITH",
+      "description": "Direct business competition. (Epic Games Store) -[COMPETES_WITH]-> (Google Play Store). (Google Gemini) -[COMPETES_WITH]-> (ChatGPT)."
+    },
+    {
+      "label": "REGULATES",
+      "description": "Regulatory relationship. (GDPR) -[REGULATES]-> (Meta). Used for laws, acts, regulatory bodies."
+    }
+  ]
+}
